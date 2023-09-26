@@ -16,7 +16,7 @@ def parse_twitts(start:datetime, end:datetime):
 
     # Define the Chrome options
     chrome_options = Options()
-    chrome_options.add_argument('--user-data-dir=/home/i2p/Documents/pars/chrome-linux64/Profile 2')
+    chrome_options.add_argument('--user-data-dir=./chrome-linux64/Profile 3')
 
     # Initialize the Chrome WebDriver
     driver = undetected_chromedriver.Chrome(options=chrome_options)
@@ -35,7 +35,7 @@ def parse_twitts(start:datetime, end:datetime):
 
     # Launch the browser and switch to the default content
     driver.get(url)
-    time.sleep(5)  # Wait for the page to load
+    time.sleep(5000)  # Wait for the page to load
 
     # Wait for the tweet text element to be present
     tweet_text_element = WebDriverWait(driver, 10).until(
@@ -156,15 +156,14 @@ def test_parse_twitts():
 
 
 def test_selenium():
-    # driver = webdriver.Chrome('/the directory where the web driver')
-    # driver = webdriver.Chrome('/chrome-linux64/chrome')
-    print('dirs: ', os.listdir())
-    driver = webdriver.Chrome('../chrome-linux64')
-    driver.get('http://www.google.com')
-    print(driver.title)
-    driver.quit()
-
+    os.environ['PATH'] += r"/chrome-linux64/"
+    chrome_options = Options()
+    chrome_options.add_argument('--user-data-dir=./chrome-linux64/Profile 3')
+    driver = undetected_chromedriver.Chrome(options=chrome_options)
+    url = "https://whoer.net"  # Replace with the webpage you want to test
+    driver.get(url)
+    time.sleep(5000)  # Wait for the page to load
 if __name__ == "__main__":
-    # parse_twitts('01-01-2023', '01-02-2023')
+#    parse_twitts('01-01-2023', '01-02-2023')
     test_selenium()
     # test_parse_twitts()
