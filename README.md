@@ -3,7 +3,7 @@
 
 ### 0 Package installation, use the following commands:
 
-        ```sudo apt update```
+        sudo apt update
 
         ```sudo apt install -y python3```
 
