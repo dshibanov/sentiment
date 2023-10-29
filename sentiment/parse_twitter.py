@@ -17,9 +17,15 @@ def parse_twitts(start:datetime, end:datetime):
     # Define the Chrome options
     chrome_options = Options()
     chrome_options.add_argument('--user-data-dir=./chrome-linux64/Profile 3')
+    chrome_options.add_argument('--disable-extensions')
+    chrome_options.add_argument('--disable-logging')
+    chrome_options.add_argument('--log-level=3')
+    chrome_options.add_argument('--start-maximized')
+    chrome_options.add_argument('--disable-notifications')
+    chrome_options.add_argument("--disable-gpu")
 
     # Initialize the Chrome WebDriver
-    driver = undetected_chromedriver.Chrome(options=chrome_options)
+    driver = undetected_chromedriver.Chrome(options=chrome_options, use_subprocess=True, version_main=117)
 
     # Database connection settings
     db_connection = sqlite3.connect('twitter_scraper.db')
@@ -158,8 +164,16 @@ def test_parse_twitts():
 def test_selenium():
     os.environ['PATH'] += r"/chrome-linux64/"
     chrome_options = Options()
+#    chrome_options.add_argument('--port=4444')
     chrome_options.add_argument('--user-data-dir=./chrome-linux64/Profile 3')
-    driver = undetected_chromedriver.Chrome(options=chrome_options)
+#    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-extensions')
+    chrome_options.add_argument('--disable-logging')
+    chrome_options.add_argument('--log-level=3')
+    chrome_options.add_argument('--start-maximized')
+    chrome_options.add_argument('--disable-notifications')
+    chrome_options.add_argument("--disable-gpu")
+    driver = undetected_chromedriver.Chrome(options=chrome_options, use_subprocess=True, version_main=117)
     url = "https://whoer.net"  # Replace with the webpage you want to test
     driver.get(url)
     time.sleep(5000)  # Wait for the page to load
